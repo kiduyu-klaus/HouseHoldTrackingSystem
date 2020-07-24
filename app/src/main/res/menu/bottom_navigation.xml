@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigationMenu"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Menu" />
+
+    <item
+        android:id="@+id/navigationconsumable"
+        android:icon="@drawable/ic_manometer"
+        android:title="Consumables" />
+
+    <item
+        android:id="@+id/navigationHome"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/navigationdelivery"
+        android:icon="@drawable/ic_truck"
+        android:title="Delivery" />
+
+    <item
+        android:id="@+id/navigationreports"
+        android:icon="@drawable/ic_marketing"
+        android:title="Reports" />
+
+</menu>

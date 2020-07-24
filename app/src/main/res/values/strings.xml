@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HouseHold Tracking System</string>
+    <string name="logo">Logi</string>
+    <string name="purpose">a platform which will enable collection of household data to enable easy management of household items</string>
 </resources>

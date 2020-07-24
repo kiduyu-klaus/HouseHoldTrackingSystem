@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorPrimaryDark">#645585</color>
     <color name="colorAccent">#03DAC5</color>
+
+//login and register
+    <color name="textInputLayout">#96ffffff</color>
+
+
+    //dashboard
+    <color name="cardColor">#ffffff</color>
+    <color name="textcardColor">#3f3f3f</color>
+
+    <color name="colorButton">#0277bd</color>
 </resources>
