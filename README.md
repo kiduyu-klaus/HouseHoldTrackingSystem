@@ -15,6 +15,7 @@
 - [ ] Connect to Admin Panel.
 
 # ScreenShots
-<img src="./screenshots/lockscreen.jpg"> <img src="./screenshots/dashboard.jpg">
+<img src="./screenshots/splash.jpg"> <img src="./screenshots/login.jpg"> <img src="./screenshots/home.jpg">.
+<img src="./screenshots/consumable_fragment.jpg">
 
 
