@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +18,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.textfield.TextInputEditText;
 import com.kiduyu.patriciproject.householdtrackingsystem.Constants.Constants;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
+import com.kiduyu.patriciproject.householdtrackingsystem.RequestHandler.RequestHandler;
 import com.kiduyu.patriciproject.householdtrackingsystem.StatusColor.StatusBar;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,7 +58,6 @@ public class AddConsumableActivity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        if (v == add_consumable)
             AddConsumerItem();
 
     }
@@ -67,48 +69,69 @@ public class AddConsumableActivity extends AppCompatActivity implements View.OnC
         final String cons_measure = measured.getText().toString().trim();
         final String cons_lasting = lasting.getText().toString().trim();
 
+        if (TextUtils.isEmpty(cons_name)) {
+            name.setError("Field Required");
 
-        progressDialog.setMessage("Adding item...");
-        progressDialog.show();
+        } else if (TextUtils.isEmpty(cons_remaider)) {
+            remaining.setError("Field Required");
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                Constants.URL_ADD_CONSUMER,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        progressDialog.dismiss();
+        } else if (TextUtils.isEmpty(cons_cost)) {
+            cost.setError("Field Required");
 
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            Log.d("TAG", "onResponsejson: "+jsonObject.getString("message"));
-                            Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+        } else if (TextUtils.isEmpty(cons_measure)) {
+            measured.setError("Field Required");
+
+        } else if (TextUtils.isEmpty(cons_lasting)) {
+            lasting.setError("Field Required");
+
+        } else {
+
+
+            progressDialog.setMessage("Adding item...");
+            progressDialog.show();
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                    Constants.URL_ADD_CONSUMER,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            progressDialog.dismiss();
+
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                Log.d("TAG", "onResponsejson: " + jsonObject.getString("message"));
+                                Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
+
+                                
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                         }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            progressDialog.hide();
+                            Log.d("TAG", "onResponsejsoneror: " + error.getMessage());
+                            FancyToast.makeText(getApplicationContext(), error.getMessage(), FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
 
+
+                        }
                     }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        progressDialog.hide();
-                        Log.d("TAG", "onResponsejsoneror: "+error.getMessage());
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-
-
-                    }
+            ) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("itemname", cons_name);
+                    params.put("remaining", cons_remaider);
+                    params.put("cost", cons_cost);
+                    params.put("item_measure", cons_measure);
+                    params.put("time_taken", cons_lasting);
+                    return params;
                 }
-        ){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                params.put("itemname", cons_name);
-                params.put("remaining", cons_remaider);
-                params.put("cost", cons_cost);
-                params.put("item_measure", cons_measure);
-                params.put("time_taken", cons_lasting);
-                return params;
-            }
-        };
+            };
+            RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
+        }
     }
 }
