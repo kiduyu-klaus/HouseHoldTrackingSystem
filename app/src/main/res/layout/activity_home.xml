@@ -20,7 +20,7 @@
         android:layout_width="71dp"
         android:layout_height="71dp"
         android:layout_marginStart="26dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/pp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

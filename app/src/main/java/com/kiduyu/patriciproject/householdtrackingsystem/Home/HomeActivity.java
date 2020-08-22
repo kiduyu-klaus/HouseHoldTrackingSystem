@@ -18,6 +18,7 @@ import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.ConsumablesFr
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.HomeFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
 import com.kiduyu.patriciproject.householdtrackingsystem.SharedPref.SharedPrefManager;
+import com.kiduyu.patriciproject.householdtrackingsystem.StatusColor.StatusBar;
 
 public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -26,6 +27,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        StatusBar.changeStatusBarColor(this);
         setContentView(R.layout.activity_home);
 
         bottomNavigationView = findViewById(R.id.navigation);
