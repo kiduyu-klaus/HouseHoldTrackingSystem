@@ -17,9 +17,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.kiduyu.patriciproject.householdtrackingsystem.Adapter.ConsumableAdapter;
+import com.kiduyu.patriciproject.householdtrackingsystem.Constants.Constants;
 import com.kiduyu.patriciproject.householdtrackingsystem.Models.Consumable;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
+import com.kiduyu.patriciproject.householdtrackingsystem.RequestHandler.RequestHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -45,8 +56,44 @@ public class ConsumablesFragment extends Fragment {
         rv_consumables.setFocusable(false);
         Content content = new Content();
         content.execute();
+       // FetchData();
         return view;
     }
+
+    private void FetchData() {
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
+                Constants.CONSUMERBLE_API,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        try {
+                            JSONArray jsonArray = jsonObject.getJSONArray("Consumable");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject author = jsonArray.getJSONObject(i);
+                                String name = author.getString("name");
+
+                                //mAuthorList.add(new AuthorHome(name, image));
+
+                            }
+                          //  mAuthorAdapter = new AuthorAdapter(getActivity(), mAuthorList);
+                            //mRecyclerView.setAdapter(mAuthorAdapter);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                volleyError.printStackTrace();
+            }
+        });
+        RequestHandler.getInstance(getActivity()).addToRequestQueue(request);
+       // requestQueue.add(jsonArrayRequest);
+    }
+
 
     private class Content extends AsyncTask<Void,Void,Void> {
 
