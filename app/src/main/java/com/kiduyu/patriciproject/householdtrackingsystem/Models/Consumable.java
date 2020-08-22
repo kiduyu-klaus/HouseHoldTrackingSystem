@@ -1,48 +1,53 @@
 package com.kiduyu.patriciproject.householdtrackingsystem.Models;
 
 public class Consumable {
-    String name,total_purchased,when,remaining;
+    String itemname,itemremaining,itemcost,itemmeasure,itemtime;
 
-    public Consumable(){
-
+    public Consumable(String itemname, String itemremaining, String itemcost, String itemmeasure, String itemtime) {
+        this.itemname = itemname;
+        this.itemremaining = itemremaining;
+        this.itemcost = itemcost;
+        this.itemmeasure = itemmeasure;
+        this.itemtime = itemtime;
     }
 
-    public Consumable(String name, String total_purchased, String when, String remaining) {
-        this.name = name;
-        this.total_purchased = total_purchased;
-        this.when = when;
-        this.remaining = remaining;
+    public String getItemname() {
+        return itemname;
     }
 
-    public String getName() {
-        return name;
+    public void setItemname(String itemname) {
+        this.itemname = itemname;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getItemremaining() {
+        return itemremaining;
     }
 
-    public String getTotal_purchased() {
-        return total_purchased;
+    public void setItemremaining(String itemremaining) {
+        this.itemremaining = itemremaining;
     }
 
-    public void setTotal_purchased(String total_purchased) {
-        this.total_purchased = total_purchased;
+    public String getItemcost() {
+        return itemcost;
     }
 
-    public String getWhen() {
-        return when;
+    public void setItemcost(String itemcost) {
+        this.itemcost = itemcost;
     }
 
-    public void setWhen(String when) {
-        this.when = when;
+    public String getItemmeasure() {
+        return itemmeasure;
     }
 
-    public String getRemaining() {
-        return remaining;
+    public void setItemmeasure(String itemmeasure) {
+        this.itemmeasure = itemmeasure;
     }
 
-    public void setRemaining(String remaining) {
-        this.remaining = remaining;
+    public String getItemtime() {
+        return itemtime;
+    }
+
+    public void setItemtime(String itemtime) {
+        this.itemtime = itemtime;
     }
 }

@@ -100,7 +100,8 @@ public class ConsumablesFragment extends Fragment {
                 long randomEpochDay = ThreadLocalRandom.current().longs(start, end).findAny().getAsLong();
                //System.out.println();
 
-                consumableArrayList.add(new Consumable(arr[randomNumber],String.valueOf(randomInt),String.valueOf(LocalDate.ofEpochDay(randomEpochDay)),String.valueOf(balance)));
+               // consumableArrayList.add(new Consumable(,String.valueOf(LocalDate.ofEpochDay(randomEpochDay)),String.valueOf(balance)));
+                consumableArrayList.add(new Consumable(arr[randomNumber],String.valueOf(randomInt),"30","kgs","5"));
 
                 //Log.d("TAG", "doInBackground: " +t.toString());
             }
