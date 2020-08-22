@@ -52,7 +52,7 @@ dependencies {
     //navigation
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'androidx.navigation:navigation-ui:2.0.0'
-
+    implementation 'com.android.volley:volley:1.0.0'
     //circle imageview
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 
@@ -61,4 +61,6 @@ dependencies {
 
     //gauge
     implementation 'com.ekn.gruzer.gaugelibrary:gaugelibrary:0.2.2'
+
+    implementation 'com.android.volley:volley:1.1.1'
 }
