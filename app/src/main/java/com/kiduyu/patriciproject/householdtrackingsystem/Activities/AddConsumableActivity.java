@@ -3,6 +3,8 @@ package com.kiduyu.patriciproject.householdtrackingsystem.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -17,9 +19,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.textfield.TextInputEditText;
 import com.kiduyu.patriciproject.householdtrackingsystem.Constants.Constants;
+import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.ConsumablesFragment;
+import com.kiduyu.patriciproject.householdtrackingsystem.Home.HomeActivity;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
 import com.kiduyu.patriciproject.householdtrackingsystem.RequestHandler.RequestHandler;
 import com.kiduyu.patriciproject.householdtrackingsystem.StatusColor.StatusBar;
+import com.shashank.sony.fancydialoglib.Animation;
+import com.shashank.sony.fancydialoglib.FancyAlertDialog;
+import com.shashank.sony.fancydialoglib.FancyAlertDialogListener;
+import com.shashank.sony.fancydialoglib.Icon;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONException;
@@ -102,7 +110,34 @@ public class AddConsumableActivity extends AppCompatActivity implements View.OnC
                                 Log.d("TAG", "onResponsejson: " + jsonObject.getString("message"));
                                 Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
 
-                                
+                                String message = jsonObject.getString("message");
+                                if (message.equals("Item Added successfully!")){
+                                    new FancyAlertDialog.Builder(AddConsumableActivity.this)
+                                            .setTitle("Alert!")
+                                            .setBackgroundColor(Color.parseColor("#303F9F"))  //Don't pass R.color.colorvalue
+                                            .setMessage("Test Popup")
+                                            .setNegativeBtnText("Dismiss")
+                                            .setPositiveBtnBackground(Color.parseColor("#FF4081"))  //Don't pass R.color.colorvalue
+                                            .setPositiveBtnText("Save")
+                                            .setNegativeBtnBackground(Color.parseColor("#FFA9A7A8"))  //Don't pass R.color.colorvalue
+                                            .setAnimation(Animation.POP)
+                                            .isCancellable(true)
+                                            .setIcon(R.drawable.ic_star_border_black_24dp, Icon.Visible)
+                                            .OnPositiveClicked(new FancyAlertDialogListener() {
+                                                @Override
+                                                public void OnClick() {
+                                                    startActivity(new Intent(AddConsumableActivity.this, HomeActivity.class));
+                                                }
+                                            })
+                                            .OnNegativeClicked(new FancyAlertDialogListener() {
+                                                @Override
+                                                public void OnClick() {
+                                                    FancyToast.makeText(AddConsumableActivity.this,"Cancel",FancyToast.LENGTH_SHORT,FancyToast.INFO,false).show();
+                                                }
+                                            })
+                                            .build();
+
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
