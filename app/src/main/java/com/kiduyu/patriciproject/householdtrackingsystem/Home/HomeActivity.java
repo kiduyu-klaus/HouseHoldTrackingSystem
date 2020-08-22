@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.ekn.gruzer.gaugelibrary.HalfGauge;
 import com.ekn.gruzer.gaugelibrary.Range;
@@ -20,6 +21,7 @@ import com.kiduyu.patriciproject.householdtrackingsystem.SharedPref.SharedPrefMa
 
 public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
+    private TextView textViewUsername, textViewUserEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,12 @@ public class HomeActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        textViewUsername = (TextView) findViewById(R.id.user_name_hs);
+        textViewUserEmail = (TextView) findViewById(R.id.user_id_hs);
+
+        textViewUserEmail.setText(SharedPrefManager.getInstance(this).getUserEmail());
+        textViewUsername.setText(SharedPrefManager.getInstance(this).getUsername());
 
         if (savedInstanceState== null){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

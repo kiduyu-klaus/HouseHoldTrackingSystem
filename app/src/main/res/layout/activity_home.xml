@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/user_name"
+        android:id="@+id/user_name_hs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
@@ -39,7 +39,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/user_id"
+        android:id="@+id/user_id_hs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
@@ -49,7 +49,7 @@
         android:textColor="#ffffff"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@id/user_photo"
-        app:layout_constraintTop_toTopOf="@id/user_name" />
+        app:layout_constraintTop_toTopOf="@id/user_name_hs" />
 
     <TextView
         android:id="@+id/logoutimage"
