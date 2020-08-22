@@ -3,16 +3,20 @@ package com.kiduyu.patriciproject.householdtrackingsystem.Home;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.ekn.gruzer.gaugelibrary.HalfGauge;
 import com.ekn.gruzer.gaugelibrary.Range;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.kiduyu.patriciproject.householdtrackingsystem.Account.LoginActivity;
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.ConsumablesFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.HomeFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
+import com.kiduyu.patriciproject.householdtrackingsystem.SharedPref.SharedPrefManager;
 
 public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -61,4 +65,10 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     };
+
+    public void logout(View view) {
+        SharedPrefManager.getInstance(this).logout();
+        finish();
+        startActivity(new Intent(this, LoginActivity.class));
+    }
 }
