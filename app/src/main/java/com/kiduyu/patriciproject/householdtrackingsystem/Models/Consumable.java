@@ -1,16 +1,25 @@
 package com.kiduyu.patriciproject.householdtrackingsystem.Models;
 
 public class Consumable {
-    String itemname,itemremaining,itemcost,itemmeasure,itemtime;
+    String id,itemname,itemremaining,itemcost,itemmeasure,itemtime;
 
-    public Consumable(String itemname, String itemremaining, String itemcost, String itemmeasure, String itemtime) {
+
+
+    public Consumable(String id, String itemname, String itemremaining, String itemcost, String itemmeasure, String itemtime) {
+        this.id = id;
         this.itemname = itemname;
         this.itemremaining = itemremaining;
         this.itemcost = itemcost;
         this.itemmeasure = itemmeasure;
         this.itemtime = itemtime;
     }
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getItemname() {
         return itemname;
     }

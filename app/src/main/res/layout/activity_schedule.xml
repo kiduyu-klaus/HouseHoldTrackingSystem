@@ -1,9 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#011C29"
+    android:gravity="center"
     tools:context=".Activities.ScheduleActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/consumable_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:text="Schedule a new delivery"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/consumable_header"
+        android:layout_margin="14dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/stroke_bg"
+                android:layout_marginTop="10dp"
+                android:hint="Item Name"
+                android:maxLines="1"
+                android:textColorHint="@android:color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_consumable_name"
+                    android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/stroke_bg"
+                android:layout_marginTop="10dp"
+                android:hint="How many do you want to order?"
+                android:textColorHint="@android:color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/schedule_consumable_total"
+                    android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_height="50dp"
+                android:background="@drawable/stroke_bg"
+                android:layout_width="match_parent"
+                android:padding="5dp"
+                android:prompt="@string/_prompt" />
+
+            <Spinner
+                android:id="@+id/spinner_urgency"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/stroke_bg"
+                android:padding="5dp"
+                android:prompt="@string/_prompt" />
+
+
+
+
+
+            <Button
+                android:id="@+id/schedule_consumer_items"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round"
+                android:padding="5dp"
+                android:text="Schedule Delivery"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:text="N/B : payment will be cash on delivery"
+                android:padding="5dp"
+                android:textAlignment="center"
+                />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -1,98 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
-    tools:context=".Account.LoginActivity">
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/good_morning_img" />
-
-    </FrameLayout>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/gotham"
-                android:text="Good "
-                android:textColor="#ffffff"
-                android:textSize="32sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/gotham"
-                android:text="Morning"
-                android:textColor="#ffffff"
-                android:textSize="32sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginTop="2dp"
-                android:background="#deff00" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="362dp"
+        android:text="Log in"
+        android:textSize="40sp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorHint"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/calibri"
-        android:gravity="center"
-        android:text="We pursue a relaxed gaming experience"
-        android:textColor="#9affffff"
-        android:textSize="10sp" />
+        />
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="32dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp">
+        android:padding="20dp">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -134,7 +68,16 @@
                 android:textColor="@android:color/white"
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot password?"
+            android:visibility="invisible"
+            android:id="@+id/forgotpassword"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorHint" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -183,9 +126,7 @@
             android:textAlignment="center"
             android:textColor="#96ffffff"
             android:textSize="16sp" />
-
-
     </LinearLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

@@ -1,10 +1,12 @@
 package com.kiduyu.patriciproject.householdtrackingsystem.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -49,7 +51,9 @@ public class AddConsumableActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_add_consumable);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Add New Consumable");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.newd,null)));
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this,R.color.newd));
 
         name= findViewById(R.id.ed_consumable_name);
         remaining= findViewById(R.id.ed_consumable_total);

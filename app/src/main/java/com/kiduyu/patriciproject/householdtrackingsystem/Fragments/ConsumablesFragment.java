@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -27,6 +28,7 @@ import com.kiduyu.patriciproject.householdtrackingsystem.Constants.Constants;
 import com.kiduyu.patriciproject.householdtrackingsystem.Models.Consumable;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
 import com.kiduyu.patriciproject.householdtrackingsystem.RequestHandler.RequestHandler;
+import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,25 +44,36 @@ public class ConsumablesFragment extends Fragment {
     RecyclerView rv_consumables;
     ProgressDialog progressDialog;
     ConsumableAdapter consumableAdapter;
+    SwipeRefreshLayout refreshLayout;
+    private static final String TAG = "ConsumablesFragment";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.consumables_fragment, container, false);
         rv_consumables = (RecyclerView)view.findViewById(R.id.consumables_rv);
+        refreshLayout = view.findViewById(R.id.consumable_reload);
         rv_consumables.setHasFixedSize(true);
-        consumableAdapter = new ConsumableAdapter(getActivity(), consumableArrayList);
-        rv_consumables.setAdapter(consumableAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         rv_consumables.setLayoutManager(layoutManager);
         rv_consumables.setFocusable(false);
-        Content content = new Content();
-        content.execute();
-       // FetchData();
+        refreshLayout.setOnRefreshListener(() -> {
+            consumableArrayList.clear();
+            FetchData();
+            FancyToast.makeText(getActivity(),"Refreshed",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+
+        });
+        //Content content = new Content();
+        //content.execute();
+        FetchData();
         return view;
     }
 
     private void FetchData() {
+        progressDialog = new ProgressDialog(getActivity());
+        progressDialog.setMessage("Please wait...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
                 Constants.CONSUMERBLE_API,
@@ -72,14 +85,24 @@ public class ConsumablesFragment extends Fragment {
                             JSONArray jsonArray = jsonObject.getJSONArray("Consumable");
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject author = jsonArray.getJSONObject(i);
-                                String name = author.getString("name");
+                                String name = author.getString("itemname");
+                                String remaining = author.getString("itemremaining");
+                                String cost = author.getString("itemcost");
+                                String itemmeasure = author.getString("itemmeasure");
+                                String time = author.getString("itemtime");
 
                                 //mAuthorList.add(new AuthorHome(name, image));
+                                //Log.d(TAG, "onResponseApi: "+name+"\n");
+
+                                consumableArrayList.add(new Consumable("",name,remaining,cost,itemmeasure,time));
 
                             }
-                          //  mAuthorAdapter = new AuthorAdapter(getActivity(), mAuthorList);
-                            //mRecyclerView.setAdapter(mAuthorAdapter);
+                            progressDialog.dismiss();
+                            consumableAdapter = new ConsumableAdapter(getActivity(), consumableArrayList);
+                            rv_consumables.setAdapter(consumableAdapter);
+
                         } catch (JSONException e) {
+                            progressDialog.dismiss();
                             e.printStackTrace();
                         }
 
@@ -87,6 +110,7 @@ public class ConsumablesFragment extends Fragment {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+                progressDialog.dismiss();
                 volleyError.printStackTrace();
             }
         });
@@ -148,7 +172,7 @@ public class ConsumablesFragment extends Fragment {
                //System.out.println();
 
                // consumableArrayList.add(new Consumable(,String.valueOf(LocalDate.ofEpochDay(randomEpochDay)),String.valueOf(balance)));
-                consumableArrayList.add(new Consumable(arr[randomNumber],String.valueOf(randomInt),"30","kgs","5"));
+               // consumableArrayList.add(new Consumable(arr[randomNumber],String.valueOf(randomInt),"30","kgs","5"));
 
                 //Log.d("TAG", "doInBackground: " +t.toString());
             }

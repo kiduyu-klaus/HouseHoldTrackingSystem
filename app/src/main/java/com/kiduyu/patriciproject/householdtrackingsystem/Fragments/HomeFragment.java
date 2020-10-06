@@ -106,7 +106,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container,
-                        new ConsumablesFragment()).commit();
+                        new ManageConsumableFragment()).commit();
             }
         });
 

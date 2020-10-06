@@ -13,4 +13,10 @@
     <color name="textcardColor">#3f3f3f</color>
 
     <color name="colorButton">#0277bd</color>
+
+    <color name="colorWhite">#fff</color>
+    <color name="colorHint">#9D9F9B</color>
+    <color name="newd">#022B25</color>
+    <color name="smths">#DCD4D2</color>
+
 </resources>

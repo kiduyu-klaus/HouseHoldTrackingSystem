@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00100E"
+    android:background="@color/newd"
     android:gravity="center"
     tools:context=".Activities.AddConsumableActivity">
 
@@ -40,11 +40,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Name"
+                android:maxLines="1"
                 android:textColorHint="@android:color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_consumable_name"
                     android:layout_width="match_parent"
+                    android:singleLine="true"
+                    android:maxLines="1"
+                    android:inputType="text"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimary" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -59,6 +63,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_consumable_total"
                     android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:inputType="number"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimary" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -73,6 +79,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_consumable_cost"
                     android:layout_width="match_parent"
+                    android:maxLines="1"
+                    android:inputType="number"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimary" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -86,6 +94,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_consumable_measurement"
+                    android:maxLines="1"
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimary" />
@@ -100,6 +110,8 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ed_consumable_howlong"
+                    android:maxLines="1"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorPrimary" />

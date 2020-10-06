@@ -74,7 +74,7 @@ public class ConsumableAdapter extends RecyclerView.Adapter<ConsumableAdapter.My
         holder.when.setText("Per : " + consumable.getItemmeasure());
         holder.total_purchased.setText("Cost : " + consumable.getItemcost());
         holder.halfGauge.setValue(Double.parseDouble(consumable.getItemremaining()));
-        if (Integer.parseInt(consumable.getItemremaining())<4) {
+        if (Integer.parseInt(consumable.getItemremaining())<14) {
             holder.itemmenu.setVisibility(View.VISIBLE);
             holder.itemmenu.setOnClickListener(new View.OnClickListener() {
                 @Override
