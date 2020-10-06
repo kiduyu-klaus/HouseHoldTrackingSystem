@@ -15,7 +15,9 @@ import com.ekn.gruzer.gaugelibrary.Range;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.kiduyu.patriciproject.householdtrackingsystem.Account.LoginActivity;
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.ConsumablesFragment;
+import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.HistoryFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.HomeFragment;
+import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.ReportsFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
 import com.kiduyu.patriciproject.householdtrackingsystem.SharedPref.SharedPrefManager;
 import com.kiduyu.patriciproject.householdtrackingsystem.StatusColor.StatusBar;
@@ -62,8 +64,14 @@ public class HomeActivity extends AppCompatActivity {
                     //MenuItem.se
                     return true;
                 case R.id.navigationreports:
+
+                    getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container,
+                            new ReportsFragment()).commit();
                     return true;
                 case  R.id.navigationdelivery:
+
+                    getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container,
+                        new HistoryFragment()).commit();
                     return true;
                 case  R.id.navigationMenu:
                     return true;

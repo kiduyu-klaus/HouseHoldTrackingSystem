@@ -18,5 +18,7 @@
     <color name="colorHint">#9D9F9B</color>
     <color name="newd">#022B25</color>
     <color name="smths">#DCD4D2</color>
+    <color name="endcolor">#9C27B0</color>
+    <color name="gray">#4B4A4A</color>
 
 </resources>

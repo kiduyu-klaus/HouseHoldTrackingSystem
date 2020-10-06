@@ -27,19 +27,41 @@
             android:textColorHint="@color/smths"
             tools:ignore="RtlSymmetry" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:visibility="gone"
-            android:id="@+id/recyclerview_tips"
+        <LinearLayout
+            android:id="@+id/llOffer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="3dp"
-            android:scrollbars="vertical" />
+            android:layout_height="50dp"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="No delivery History found"/>
+            <TextView
+                android:id="@+id/tvPickup"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_leftswitch_select"
+                android:gravity="center"
+                android:paddingTop="@dimen/spacing_medium"
+                android:paddingBottom="@dimen/spacing_medium"
+                android:text="Pending"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_large" />
+
+            <TextView
+                android:id="@+id/tvDropping"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rightswitch"
+                android:gravity="center"
+                android:paddingTop="@dimen/spacing_medium"
+                android:paddingBottom="@dimen/spacing_medium"
+                android:text="Completed"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/font_large" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
