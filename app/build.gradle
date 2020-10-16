@@ -56,9 +56,13 @@ dependencies {
     //navigation
     implementation 'androidx.navigation:navigation-fragment:2.0.0'
     implementation 'androidx.navigation:navigation-ui:2.0.0'
-    implementation 'com.android.volley:volley:1.0.0'
+    implementation 'com.android.volley:volley:1.1.0'
     //circle imageview
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    implementation files('libs/mail.jar')
+    implementation files('libs/activation.jar')
+    implementation files('libs/additionnal.jar')
 
     //spinkit
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'

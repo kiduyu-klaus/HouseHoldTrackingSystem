@@ -4,4 +4,7 @@
     <dimen name="spacing_small">5dp</dimen>
     <dimen name="spacing_medium">5dp</dimen>
     <dimen name="font_large">19sp</dimen>
+    <dimen name="activity_horizontal_margin">10dp</dimen>
+    <dimen name="activity_vertical_margin">10dp</dimen>
+    <dimen name="btn_corners">5dp</dimen>
 </resources>

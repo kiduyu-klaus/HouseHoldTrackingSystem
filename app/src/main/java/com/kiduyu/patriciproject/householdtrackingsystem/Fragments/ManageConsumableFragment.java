@@ -2,9 +2,13 @@ package com.kiduyu.patriciproject.householdtrackingsystem.Fragments;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ManageConsumableFragment extends Fragment {
     private ArrayList<Consumable> consumableArrayList = new ArrayList<>();
@@ -37,6 +42,7 @@ public class ManageConsumableFragment extends Fragment {
     ProgressDialog progressDialog;
     ManageConsumableAdapter consumableAdapter;
     SwipeRefreshLayout refreshLayout;
+    TextView nohistory;
     private static final String TAG = "ConsumablesFragment";
 
 
@@ -46,6 +52,7 @@ public class ManageConsumableFragment extends Fragment {
         View view = inflater.inflate(R.layout.manage_consumable_fragment, container, false);
         rv_consumables = (RecyclerView)view.findViewById(R.id.recyclerview_manage_consumable);
         refreshLayout = view.findViewById(R.id.manage_c_refresh);
+        nohistory = view.findViewById(R.id.no_history);
         rv_consumables.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false);
         rv_consumables.setLayoutManager(layoutManager);
@@ -56,10 +63,48 @@ public class ManageConsumableFragment extends Fragment {
             FancyToast.makeText(getActivity(),"Refreshed",FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
 
         });
+        EditText search = view.findViewById(R.id.search_editText_history);
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
         //Content content = new Content();
         //content.execute();
         FetchData();
         return view;
+    }
+
+    private void filter(String text) {
+        ArrayList<Consumable> filteredList = new ArrayList<>();
+        for (Consumable item : consumableArrayList) {
+            if (item.getItemname().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(item);
+                rv_consumables.setVisibility(View.VISIBLE);
+                nohistory.setVisibility(View.GONE);
+            }
+            else{
+                rv_consumables.setVisibility(View.GONE);
+                nohistory.setVisibility(View.VISIBLE);
+
+            }
+        }
+
+
+        consumableAdapter = new ManageConsumableAdapter(getActivity(), filteredList);
+        rv_consumables.setAdapter(consumableAdapter);
+        consumableAdapter.notifyDataSetChanged();
     }
 
     private void FetchData() {

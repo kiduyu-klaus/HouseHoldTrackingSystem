@@ -15,4 +15,11 @@
     <string name="username">Username</string>
     <string name="confirm_password">Confirm password</string>
     <string name="_prompt">Choose Delivery Agent</string>
+    <string name="profile_save">Edit Details</string>
+
+    <string name="name_login">Name</string>
+    <string name="email_login">Email</string>
+    <string name="phone_login">Phone</string>
+    <string name="password_login">Password</string>
+    <string name="no_data_found">No Data Found</string>
 </resources>

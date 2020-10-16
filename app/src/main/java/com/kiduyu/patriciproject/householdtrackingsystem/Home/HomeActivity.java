@@ -17,6 +17,7 @@ import com.kiduyu.patriciproject.householdtrackingsystem.Account.LoginActivity;
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.ConsumablesFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.HistoryFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.HomeFragment;
+import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.ProfileFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.ReportsFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
 import com.kiduyu.patriciproject.householdtrackingsystem.SharedPref.SharedPrefManager;
@@ -74,6 +75,8 @@ public class HomeActivity extends AppCompatActivity {
                         new HistoryFragment()).commit();
                     return true;
                 case  R.id.navigationMenu:
+                    getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragment_container,
+                            new ProfileFragment()).commit();
                     return true;
             }
 

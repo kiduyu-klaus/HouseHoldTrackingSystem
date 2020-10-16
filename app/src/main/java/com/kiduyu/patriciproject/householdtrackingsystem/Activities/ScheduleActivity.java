@@ -179,13 +179,8 @@ public class ScheduleActivity extends AppCompatActivity {
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            Log.d("TAG", "onResponsejson: " + jsonObject.getString("message"));
+                            Log.d("TAG", "onResponsejson: "+jsonObject.getString("message"));
                             Toast.makeText(getApplicationContext(), jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-
-                            String message = jsonObject.getString("message");
-                            if (message.equals("Item Added successfully!")){
-
-                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

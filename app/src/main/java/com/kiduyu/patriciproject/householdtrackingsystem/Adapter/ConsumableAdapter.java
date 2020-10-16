@@ -20,6 +20,7 @@ import com.kiduyu.patriciproject.householdtrackingsystem.Activities.ScheduleActi
 import com.kiduyu.patriciproject.householdtrackingsystem.Models.Consumable;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ConsumableAdapter extends RecyclerView.Adapter<ConsumableAdapter.MyViewHolder> {
@@ -104,7 +105,10 @@ public class ConsumableAdapter extends RecyclerView.Adapter<ConsumableAdapter.My
             });
         }
     }
-
+    public void filterList(List<Consumable> filteredList) {
+        consumableList = filteredList;
+        notifyDataSetChanged();
+    }
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title, total_purchased, when, remaining;
         HalfGauge halfGauge;
