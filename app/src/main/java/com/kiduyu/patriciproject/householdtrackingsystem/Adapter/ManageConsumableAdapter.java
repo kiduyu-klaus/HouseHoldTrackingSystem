@@ -35,6 +35,7 @@ import com.kiduyu.patriciproject.householdtrackingsystem.Account.LoginActivity;
 import com.kiduyu.patriciproject.householdtrackingsystem.Activities.ScheduleActivity;
 import com.kiduyu.patriciproject.householdtrackingsystem.Constants.Constants;
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.HistoryFragment;
+import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.ManageConsumableFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.Models.Consumable;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
 import com.kiduyu.patriciproject.householdtrackingsystem.RequestHandler.RequestHandler;
@@ -136,19 +137,12 @@ public class ManageConsumableAdapter extends RecyclerView.Adapter<ManageConsumab
                     public void onResponse(String response) {
                         progressDialog.dismiss();
 
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            Log.d("TAG", "onResponsejson: "+jsonObject.getString("message"));
-                            Toast.makeText(mcontext, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-
-                            AppCompatActivity activity = (AppCompatActivity) mcontext;
-                            Fragment myFragment = new HistoryFragment();
-                            activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
+                        alertDialog.dismiss();
+                        AppCompatActivity activity = (AppCompatActivity) mcontext;
+                        Fragment myFragment = new ManageConsumableFragment();
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
 
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
 
                     }
                 },
@@ -191,20 +185,12 @@ public class ManageConsumableAdapter extends RecyclerView.Adapter<ManageConsumab
                     @Override
                     public void onResponse(String response) {
                         progressDialog.dismiss();
-
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            Log.d("TAG", "onResponsejson: "+jsonObject.getString("message"));
-                            Toast.makeText(mcontext, jsonObject.getString("message"), Toast.LENGTH_LONG).show();
-
-                            AppCompatActivity activity = (AppCompatActivity) mcontext;
-                            Fragment myFragment = new HistoryFragment();
-                            activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
+                        AppCompatActivity activity = (AppCompatActivity) mcontext;
+                        Fragment myFragment = new ManageConsumableFragment();
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myFragment).addToBackStack(null).commit();
 
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+
 
                     }
                 },
