@@ -17,9 +17,23 @@
     <string name="_prompt">Choose Delivery Agent</string>
     <string name="profile_save">Edit Details</string>
 
+    <string name="navigation_drawer_open">Open navigtion drawer</string>
+    <string name="navigation_drawer_close">close navigtion drawer</string>
+
     <string name="name_login">Name</string>
     <string name="email_login">Email</string>
     <string name="phone_login">Phone</string>
     <string name="password_login">Password</string>
     <string name="no_data_found">No Data Found</string>
+    <string name="customer_registration">Customer Registration</string>
+    <string name="full_name">Fullname</string>
+    <string name="customer_register">Register As Customer</string>
+    <string name="already_have_account_sign_in_here">already have account  sign in here</string>
+    <string name="are_you_a_veterinary_click_here">Register As Delivery Person</string>
+    <string name="are_you_a_customer_click_here">Register As Customer</string>
+    <string name="login_as_a_customer_click_here">Login As Customer</string>
+    <string name="login_txt">Login As Delivery Person</string>
+    <string name="don_t_have_account_sign_up_here">"Don't have an account? "</string>
+    <string name="log_in">Customer Login</string>
+    <string name="customer_login">Customer Login</string>
 </resources>

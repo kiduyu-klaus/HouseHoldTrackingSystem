@@ -1,5 +1,6 @@
 package com.kiduyu.patriciproject.householdtrackingsystem.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -24,8 +25,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kiduyu.patriciproject.householdtrackingsystem.Constants.Constants;
 import com.kiduyu.patriciproject.householdtrackingsystem.Home.HomeActivity;
+import com.kiduyu.patriciproject.householdtrackingsystem.Models.Person;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
 import com.kiduyu.patriciproject.householdtrackingsystem.RequestHandler.RequestHandler;
 import com.shashank.sony.fancydialoglib.Animation;
@@ -98,11 +105,34 @@ public class ScheduleActivity extends AppCompatActivity {
         // you need to have a list of data that you want the spinner to display
         List<String> spinnerArray = new ArrayList<String>();
         spinnerArray.add("Choose a delivery Agent");
-        spinnerArray.add("John Joe");
+        /*spinnerArray.add("John Joe");
         spinnerArray.add("Michael Todd");
         spinnerArray.add("James Maina");
         spinnerArray.add("John Mwangi");
         spinnerArray.add("Pamella Muthoni");
+
+         */
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference().child("Delivery");
+
+        RootRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot productsSnapshot: dataSnapshot.getChildren()) {
+                    Person productname = productsSnapshot.getValue(Person.class);
+                    spinnerArray.add(productname.getName());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(ScheduleActivity.this, String.valueOf(databaseError.getMessage()), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);

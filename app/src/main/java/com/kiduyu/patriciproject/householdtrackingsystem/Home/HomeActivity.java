@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ekn.gruzer.gaugelibrary.HalfGauge;
 import com.ekn.gruzer.gaugelibrary.Range;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,8 +21,11 @@ import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.HomeFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.ProfileFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.Fragments.ReportsFragment;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
+import com.kiduyu.patriciproject.householdtrackingsystem.SharedPref.Prevalent;
 import com.kiduyu.patriciproject.householdtrackingsystem.SharedPref.SharedPrefManager;
 import com.kiduyu.patriciproject.householdtrackingsystem.StatusColor.StatusBar;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -39,8 +43,10 @@ public class HomeActivity extends AppCompatActivity {
         textViewUsername = (TextView) findViewById(R.id.user_name_hs);
         textViewUserEmail = (TextView) findViewById(R.id.user_id_hs);
 
-        textViewUserEmail.setText(SharedPrefManager.getInstance(this).getUserEmail());
-        textViewUsername.setText(SharedPrefManager.getInstance(this).getUsername());
+        textViewUserEmail.setText(Prevalent.currentOnlineUser.getPhone());
+        textViewUsername.setText(Prevalent.currentOnlineUser.getName());
+        CircleImageView imageView = (CircleImageView) findViewById(R.id.user_photo);
+        Glide.with(this).load(Prevalent.currentOnlineUser.getImage()).into(imageView);
 
         if (savedInstanceState== null){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

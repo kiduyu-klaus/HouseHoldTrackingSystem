@@ -1,229 +1,177 @@
 package com.kiduyu.patriciproject.householdtrackingsystem.Account;
 
-import androidx.appcompat.app.AlertDialog;
+
+
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+import io.paperdb.Paper;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.kiduyu.patriciproject.householdtrackingsystem.Constants.Constants;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.kiduyu.patriciproject.householdtrackingsystem.Delivery.DeliveryHomeActivity;
 import com.kiduyu.patriciproject.householdtrackingsystem.Home.HomeActivity;
-import com.kiduyu.patriciproject.householdtrackingsystem.Mail.SendMail;
+import com.kiduyu.patriciproject.householdtrackingsystem.Models.Person;
 import com.kiduyu.patriciproject.householdtrackingsystem.R;
-import com.kiduyu.patriciproject.householdtrackingsystem.RequestHandler.RequestHandler;
+import com.kiduyu.patriciproject.householdtrackingsystem.SharedPref.Prevalent;
 import com.kiduyu.patriciproject.householdtrackingsystem.SharedPref.SharedPrefManager;
-import com.kiduyu.patriciproject.householdtrackingsystem.StatusColor.StatusBar;
+import com.rey.material.widget.CheckBox;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+public class LoginActivity extends AppCompatActivity {
+    private EditText phonenumber;
+    private EditText pass;
+    private CheckBox chkBoxRememberMe;
+    private Button btnLogin;
+    private ProgressDialog loadingBar;
+    private TextView signUp, login_title, customer_txt, vet_txt;
+    private String parentDbName = "Customer";
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-    private EditText editTextUsername, editTextPassword;
-    private Button buttonLogin;
-    AlertDialog.Builder dialogBuilder;
-    RelativeLayout layout1,layout2;
-    AlertDialog alertDialog;
-    Button btnSave;
-    EditText txtemail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        StatusBar.changeStatusBarColor(this);
         setContentView(R.layout.activity_login);
+        FirebaseApp.initializeApp(this);
+
         if(SharedPrefManager.getInstance(this).isLoggedIn()){
             finish();
             startActivity(new Intent(this, HomeActivity.class));
             return;
         }
 
-        editTextUsername = (EditText) findViewById(R.id.editTextUsername);
-        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        buttonLogin = (Button) findViewById(R.id.buttonLogin);
-        buttonLogin.setOnClickListener(this);
-        findViewById(R.id.txt_forgot_pass).setOnClickListener(new View.OnClickListener() {
+        phonenumber = findViewById(R.id.number_login);
+        pass = findViewById(R.id.password_login);
+        btnLogin = findViewById(R.id.btn_login);
+        signUp = findViewById(R.id.signup_txt);
+        login_title = findViewById(R.id.login_title);
+        customer_txt = findViewById(R.id.customer_txt);
+        vet_txt = findViewById(R.id.vet_txt);
+        loadingBar = new ProgressDialog(this);
+
+        chkBoxRememberMe = findViewById(R.id.remember_me_chkb);
+        Paper.init(this);
+
+
+        vet_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnLogin.setText("Delivery Login");
+                login_title.setText("Delivery Login");
+                parentDbName = "Delivery";
+                customer_txt.setVisibility(View.VISIBLE);
+                vet_txt.setVisibility(View.INVISIBLE);
+            }
+        });
 
-                dialogBuilder = new AlertDialog.Builder(LoginActivity.this);
-// ...Irrelevant code for customizing the buttons and title
-                LayoutInflater inflater = getLayoutInflater();
-                View dialogView = inflater.inflate(R.layout.dialog_forgotpass, null);
-                dialogBuilder.setView(dialogView);
+        customer_txt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnLogin.setText("Customer Login");
+                login_title.setText("Customer Login");
+                parentDbName = "Customer";
+                vet_txt.setVisibility(View.VISIBLE);
+                customer_txt.setVisibility(View.INVISIBLE);
+            }
+        });
 
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+            }
+        });
 
-
-                txtemail = (EditText) dialogView.findViewById(R.id.forgot_email);
-                btnSave = (Button) dialogView.findViewById(R.id.btn_save_s);
-
-                layout1 = dialogView.findViewById(R.id.content_ly);
-                layout2 = dialogView.findViewById(R.id.pb_ly);
-
-     /*   EditText editText = (EditText) dialogView.findViewById(R.id.label_field);
-        editText.setText("test label");
-
-      */
-                btnSave.setOnClickListener(view1 -> {
-                    String emqail = txtemail.getText().toString().trim();
-
-                    if (TextUtils.isEmpty(emqail)){
-                        txtemail.setError("Required!");
-                        txtemail.requestFocus();
-                    } else {
-                        layout2.setVisibility(View.VISIBLE);
-                        layout1.setVisibility(View.GONE);
-                        sendEmail(emqail);
-                    }
-                });
-                alertDialog = dialogBuilder.create();
-                alertDialog.show();
-
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginUser();
             }
         });
     }
 
-    private void userLogin() {
-        final String username = editTextUsername.getText().toString().trim();
-        final String password = editTextPassword.getText().toString().trim();
-        StatusBar.showProgressDialog(this,true);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                Constants.URL_LOGIN, new Response.Listener<String>() {
+    private void LoginUser() {
+        String phone = phonenumber.getText().toString();
+        String password = pass.getText().toString();
+
+        if (TextUtils.isEmpty(phone)) {
+            phonenumber.setError("Phone Number Is Required..");
+            return;
+        } else if (TextUtils.isEmpty(password)) {
+            pass.setError("Password Is Required..");
+            return;
+        } else {
+            loadingBar.setTitle("Logging Into The App");
+            loadingBar.setMessage("Please wait, while we are checking the credentials...");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
+
+            AllowAccessToAccount(phone, password);
+
+
+        }
+    }
+
+    private void AllowAccessToAccount(final String phone, final String password) {
+        if (chkBoxRememberMe.isChecked()) {
+            Paper.book().write(Prevalent.UserPhoneKey, phone);
+            Paper.book().write(Prevalent.UserPasswordKey, password);
+        }
+
+        final DatabaseReference RootRef;
+        RootRef = FirebaseDatabase.getInstance().getReference();
+
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onResponse(String response) {
-                StatusBar.showProgressDialog(LoginActivity.this,false);
-                try {
-                    JSONObject obj = new JSONObject(response);
-                    if(!obj.getBoolean("error")){
-                        SharedPrefManager.getInstance(getApplicationContext())
-                                .userLogin(
-                                        obj.getInt("id"),
-                                        obj.getString("username"),
-                                        obj.getString("email")
-                                );
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.child(parentDbName).child(phone).exists()) {
+                    Person usersData = dataSnapshot.child(parentDbName).child(phone).getValue(Person.class);
 
-                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                        finish();
-                    }else{
-                        Toast.makeText(
-                                getApplicationContext(),
-                                obj.getString("message"),
-                                Toast.LENGTH_LONG
-                        ).show();
+                    if (usersData.getPhone().equals(phone)) {
+                        if (usersData.getPassword().equals(password)) {
+                            if (parentDbName.equals("Customer")) {
+                                Toast.makeText(LoginActivity.this, "Welcome "+usersData.getName()+", you are logged in Successfully...", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
 
+                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                Prevalent.currentOnlineUser = usersData;
+                                startActivity(intent);
+                            } else if (parentDbName.equals("Delivery")) {
+                                Toast.makeText(LoginActivity.this, "Welcome , you are logged in Successfully...", Toast.LENGTH_SHORT).show();
+                                loadingBar.dismiss();
+
+                                Intent intent = new Intent(LoginActivity.this, DeliveryHomeActivity.class);
+                                Prevalent.currentOnlineUser = usersData;
+                                startActivity(intent);
+                            }
+                        } else {
+                            loadingBar.dismiss();
+                            Toast.makeText(LoginActivity.this, "Password is incorrect.", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                } else {
+                    Toast.makeText(LoginActivity.this, "Account with this " + phone + " number do not exists.", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
                 }
-
             }
-        }, new Response.ErrorListener() {
+
             @Override
-            public void onErrorResponse(VolleyError error) {
-                StatusBar.showProgressDialog(LoginActivity.this,false);
-
-                Toast.makeText(
-                        getApplicationContext(),
-                        error.getMessage(),
-                        Toast.LENGTH_LONG
-                ).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("username", username);
-                params.put("password", password);
-                return params;
-            }
-        };
-        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
-
-    }
-
-        @Override
-    public void onClick(View v) {
-            if(v == buttonLogin){
-                userLogin();
-            }
-
-    }
-
-    public void signup(View view) {
-        startActivity(new Intent(this, RegisterActivity.class));
-    }
-
-    private void sendEmail(String emqail) {
-        Random r = new Random();
-        String randomNumber = String.format("%04d", r.nextInt(1001));
-        System.out.println(randomNumber);
-        String email = emqail;
-
-        String subject = "Password reset";
-        String message = "Password reset for the HouseItems application\n\nYour Reset code is\n "
-                +randomNumber+"\nInput that to reset your password";
-        //Creating SendMail object
-        SendMail sm = new SendMail(this, email, subject, message);
-
-        //Executing sendmail to send email
-        sm.execute();
-        
-        ResetPassword(randomNumber);
-        
-    }
-
-    private void ResetPassword(String randomNumber) {
-        alertDialog.dismiss();
-        dialogBuilder = new AlertDialog.Builder(LoginActivity.this);
-// ...Irrelevant code for customizing the buttons and title
-        LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.dialog_forgotpass1, null);
-        dialogBuilder.setView(dialogView);
-
-
-
-        txtemail = (EditText) dialogView.findViewById(R.id.forgot_email);
-        btnSave = (Button) dialogView.findViewById(R.id.btn_save_s);
-
-        layout1 = dialogView.findViewById(R.id.content_ly);
-        layout2 = dialogView.findViewById(R.id.pb_ly);
-
-     /*   EditText editText = (EditText) dialogView.findViewById(R.id.label_field);
-        editText.setText("test label");
-
-      */
-        btnSave.setOnClickListener(view1 -> {
-            String emqail = txtemail.getText().toString().trim();
-
-            if (TextUtils.isEmpty(emqail)){
-
-            } else {
-                if (emqail.equals(randomNumber)){
-                    Toast.makeText(this, "accepted code ", Toast.LENGTH_SHORT).show();
-
-                } else{
-                    txtemail.setError("Wrong code!");
-                    txtemail.requestFocus();
-                }
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        alertDialog = dialogBuilder.create();
-        alertDialog.show();
     }
 }

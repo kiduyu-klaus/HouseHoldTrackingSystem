@@ -11,10 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.AddConsumableActivity"
-            android:theme="@style/ActionBaEnabled"></activity>
-        <activity android:name=".Activities.ScheduleActivity"
-            android:theme="@style/ActionBaEnabled"/>
+        <activity android:name=".Delivery.DeliveryHomeActivity"></activity>
+        <activity
+            android:name=".Activities.AddConsumableActivity"
+            android:theme="@style/ActionBaEnabled" />
+        <activity
+            android:name=".Activities.ScheduleActivity"
+            android:theme="@style/ActionBaEnabled" />
         <activity android:name=".Home.HomeActivity" />
         <activity android:name=".Account.RegisterActivity" />
         <activity android:name=".Account.LoginActivity" />

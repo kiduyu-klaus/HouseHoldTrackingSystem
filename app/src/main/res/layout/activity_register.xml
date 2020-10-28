@@ -1,135 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/colorPrimaryDark"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:orientation="vertical">
+    tools:context=".Account.RegisterActivity">
 
     <TextView
-        android:layout_width="362dp"
-        android:text="@string/register"
-        android:textSize="40sp"
-        android:layout_marginTop="20dp"
-        android:textStyle="bold"
-        android:textColor="@color/colorHint"
-        android:layout_height="wrap_content"
-        />
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        android:layout_marginTop="100dp"
-        android:orientation="vertical">
+        android:text="@string/customer_registration"
+        android:textColor="@color/white"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:gravity="center"
+        android:id="@+id/reg_title"
+        />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColorHint="@color/colorHint">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/full_name"
+        android:background="@drawable/inputs"
+        android:padding="10dp"
+        android:inputType="text"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:id="@+id/fullname"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/phone_number"
+        android:background="@drawable/inputs"
+        android:padding="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:inputType="number"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:id="@+id/phone_number"
+        />
 
-            <EditText
-                android:layout_width="match_parent"
-                android:id="@+id/editTextUsername"
-                android:layout_height="wrap_content"
-                android:hint="@string/username"
-                android:textColor="@color/colorWhite"
-                android:textColorHint="@color/colorHint"
-                android:backgroundTint="@color/colorWhite"/>
-        </com.google.android.material.textfield.TextInputLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:hint="@string/password"
+        android:background="@drawable/inputs"
+        android:padding="10dp"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:id="@+id/password_reg"
+        />
 
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColorHint="@color/colorHint">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editTextPassword"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:textColor="@color/colorWhite"
-                android:textColorHint="@color/colorHint"
-                android:backgroundTint="@color/colorWhite"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColorHint="@color/colorHint">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/editTextPassword_confirm"
-                android:hint="@string/confirm_password"
-                android:inputType="textPassword"
-                android:textColor="@color/colorWhite"
-                android:textColorHint="@color/colorHint"
-                android:backgroundTint="@color/colorWhite"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColorHint="@color/colorHint">
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/phone_number"
-                android:inputType="number"
-                android:id="@+id/editTextphone"
-                android:textColor="@color/colorWhite"
-                android:textColorHint="@color/colorHint"
-                android:backgroundTint="@color/colorWhite"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColorHint="@color/colorHint">
-
-            <EditText
-                android:id="@+id/editTextEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/colorWhite"
-                android:textColorHint="@color/colorHint"
-                android:backgroundTint="@color/colorWhite"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="@string/confirm_password"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:background="@drawable/inputs"
+        android:padding="10dp"
+        android:inputType="textPassword"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:id="@+id/password_confm"
+        />
 
     <Button
-        android:id="@+id/buttonRegister"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="40dp"
-        android:background="@drawable/elipse1"
-        android:text="@string/register"
-        android:textColor="@color/colorWhite" />
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text="@string/customer_register"
+        android:background="@drawable/buttons"
+        android:padding="6dp"
+        android:textColor="@android:color/white"
+        android:id="@+id/btn_reg"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:text="@string/already_have_account_sign_in_here"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:textSize="19sp"
+        android:id="@+id/signin_txt"
+        />
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:text="@string/are_you_a_veterinary_click_here"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:padding="5dp"
         android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="bottom">
-        <TextView
-            android:id="@+id/textViewLogin"
-            android:layout_below="@+id/linearLayout"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-            android:textAlignment="center"
-            android:text="Already Registered? \n Click Here to Login"
-            android:layout_width="match_parent"
-            android:textColor="@color/colorWhite"
-            android:layout_height="wrap_content" />
+        android:textSize="19sp"
+        android:id="@+id/vendor_txt"
+        />
 
-    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:text="@string/are_you_a_customer_click_here"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+        android:textSize="19sp"
+        android:id="@+id/customer_txt"
+        android:visibility="invisible"
+        />
+
 
 
 </LinearLayout>

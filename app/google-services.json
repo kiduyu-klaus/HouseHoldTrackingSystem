@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "251991827527",
+    "firebase_url": "https://household-tracking-system.firebaseio.com",
+    "project_id": "household-tracking-system",
+    "storage_bucket": "household-tracking-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:251991827527:android:c4f80830b4a66a202b7d62",
+        "android_client_info": {
+          "package_name": "com.kiduyu.patriciproject.householdtrackingsystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "251991827527-7viq7mjvlkh9ekni3ak9nbc5iqfisb8e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kiduyu.patriciproject.householdtrackingsystem",
+            "certificate_hash": "430f439c9f141977457972fbfa541c97cc72762e"
+          }
+        },
+        {
+          "client_id": "251991827527-j391mglossd7iraaurv671fksscla274.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLYRUj6rkJSTI4-6O4MVFw1yMlU0mfPGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "251991827527-j391mglossd7iraaurv671fksscla274.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
