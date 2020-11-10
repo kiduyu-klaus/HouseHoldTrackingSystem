@@ -16,6 +16,8 @@ public class Constants {
     public static final String CONSUMERBLE_API= ROOT_URL + "consumableApi.php";
     public static final String PENDING_SCHEDULE_API =  ROOT_URL + "pendingscheduleApi.php";
     public static final String DELETE_SCHEDULE =  ROOT_URL + "deletecheduleApi.php";
+    public static final String APPROVE_SCHEDULE =  ROOT_URL + "approvecheduleApi.php";
+    public static final String DENY_SCHEDULE =  ROOT_URL + "denycheduleApi.php";
     public static final String UPDATE_SCHEDULE =  ROOT_URL + "updatecheduleApi.php";
     public static final String COMPLETED_SCHEDULE_API =  ROOT_URL + "completescheduleApi.php";
     public static final String URL_ADD_SCHEDULE= ROOT_URL + "scheduleApi.php";

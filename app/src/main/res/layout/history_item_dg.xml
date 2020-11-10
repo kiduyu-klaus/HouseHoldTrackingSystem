@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="6dp"
+    app:cardBackgroundColor="#ECDDDD"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical">
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="vertical">
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal"
+         android:layout_margin="5dp">
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_weight="1"
+             android:layout_height="wrap_content">
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical">
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:padding="5dp"
+                     android:text="Name"
+                     android:id="@+id/history_name"
+                     android:textSize="18sp"/>
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:padding="5dp"
+                     android:text="Name"
+                     android:id="@+id/history_order"
+                     android:textSize="18sp" />
+             </LinearLayout>
+         </RelativeLayout>
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_weight="1">
+
+             <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:orientation="vertical">
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:padding="5dp"
+                     android:text="Name"
+                     android:id="@+id/history_agent"
+                     android:textSize="18sp"/>
+
+                 <TextView
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:padding="5dp"
+                     android:text="Name"
+                     android:id="@+id/history_urgency"
+                     android:textSize="18sp" />
+
+             </LinearLayout>
+         </RelativeLayout>
+     </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:orientation="horizontal">
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center"
+             android:layout_weight="1"
+             >
+             <Button
+                 android:id="@+id/deliveryapprove"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="8dp"
+                 android:padding="4dp"
+                 android:background="@drawable/bg_round"
+                 android:textColor="@android:color/white"
+                 android:text="Approve"/>
+         </RelativeLayout>
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:layout_weight="1"
+             android:gravity="center">
+
+             <Button
+                 android:id="@+id/deliverydeny"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_margin="8dp"
+                 android:background="@drawable/bg_round1"
+                 android:padding="4dp"
+                 android:text="Deny"
+                 android:textColor="@android:color/white" />
+         </RelativeLayout>
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:gravity="center"
+             android:visibility="gone"
+             android:layout_weight="1"
+             >
+             <Button
+                 android:id="@+id/appointment_status1"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:background="@drawable/stroke_bg"
+                 android:layout_margin="8dp"
+                 android:textSize="18sp"
+                 android:text="Make Payments"/>
+         </RelativeLayout>
+     </LinearLayout>
+ </LinearLayout>
+
+</androidx.cardview.widget.CardView>

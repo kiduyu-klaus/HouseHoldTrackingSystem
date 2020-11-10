@@ -8,6 +8,14 @@
         <item android:id="@+id/vet_nav_home"
             android:icon="@drawable/ic_home"
             android:title="Home"/>
+        <item
+            android:id="@+id/vet_nav_approvedelivery"
+            android:icon="@drawable/ic_home"
+            android:title="Approve Delivery" />
+        <item
+            android:id="@+id/vet_nav_mydelivery"
+            android:icon="@drawable/ic_home"
+            android:title="Approve Delivery" />
         <item android:id="@+id/vet_nav_signout"
             android:icon="@drawable/ic_logout"
             android:title="SignOut"/>
